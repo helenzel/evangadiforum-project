@@ -12,9 +12,9 @@ const createTableIfNotExists = async (tableName, createStatement) => {
         );
         if (rows.length === 0) {
             await connection.query(createStatement);  //Executing CREATE TABLE Statement, Creating The Table
-            console.log(`✅ Table ${tableName} created!`);
+            // console.log(`✅ Table ${tableName} created!`);
         } else {
-            console.log(`✅ Table ${tableName} already exists, skipping creation.`);
+            // console.log(`✅ Table ${tableName} already exists, skipping creation.`);
         }
         connection.release();
     } catch (err) {
@@ -37,7 +37,7 @@ export const createAllTables = async () => {
         console.log("✅ Database tables initialized!");
 
   }catch (err) {
-    console.error("Error initializing tables:", err.message);
+    // console.error("Error initializing tables:", err.message);
     throw err;
   }
 }

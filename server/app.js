@@ -28,11 +28,11 @@ const testConnection = async () => {
   let connection;
   try {
     connection = await pool.getConnection();
-    console.log("✅ MySQL connected via pool!");
+    // console.log("✅ MySQL connected via pool!");
 
     return true;
   } catch (err) {
-    console.error("❌ MySQL error:", err); //Logging the Whole Error object for debugging
+    // console.error("❌ MySQL error:", err); //Logging the Whole Error object for debugging
     return false;
   } finally {
     if (connection) connection.release();
@@ -41,11 +41,11 @@ const testConnection = async () => {
 
 // ✅ Start the server
 const startServer = async () => {
-  console.log(" Testing database connection...");
+  // console.log(" Testing database connection...");
   const isConnected = await testConnection();
 
   if (!isConnected) {
-    console.error("Failed to connect to database. Exiting...");
+    // console.error("Failed to connect to database. Exiting...");
     process.exit(1); //Kills the app if database fails
   }
   if (process.env.INIT_DB === "true") {
@@ -53,19 +53,19 @@ const startServer = async () => {
       // createAllTables(); //calling this without await, might lead to race conditions****************************** 1.BA
       await createAllTables();
     } catch (err) {
-      console.error("Failed to initialize tables. Exiting...");
+      // console.error("Failed to initialize tables. Exiting...");
       process.exit(1);
     }
   }
 
   //Start Listening
   const server = app.listen(port, () => {
-    console.log(`listening on ${port}`);
+    // console.log(`listening on ${port}`);
   });
 
   // Handle server startup errors
   server.on("error", (err) => {
-    console.error("Server startup error:", err.message);
+    // console.error("Server startup error:", err.message);
     process.exit(1);
   });
 };

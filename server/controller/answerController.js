@@ -3,7 +3,6 @@ import pool from "../config/databaseConfig.js";
 
 //post answer
 export async function postAnswer(req, res) {
-
   // Validating of user(req.user) from JWT middleware
   const { username, user_id } = req.user;
   if (!username || !user_id) {
@@ -76,8 +75,6 @@ export async function postAnswer(req, res) {
     const query = `SELECT question_id FROM questions WHERE question_id = ?`;
     const [questionCheck] = await pool.execute(query, [questionId]);
 
-    // console.log(questionCheck);
-
     if (questionCheck.length === 0) {
       return res.status(StatusCodes.NOT_FOUND).json({
         success: false,
@@ -95,8 +92,6 @@ export async function postAnswer(req, res) {
       answer,
     ]);
 
-    
-
     //Success Response
     res.status(StatusCodes.CREATED).json({
       success: true,
@@ -105,11 +100,11 @@ export async function postAnswer(req, res) {
       answer_id: rows.insertId,
     });
 
-    console.log(
-      `Answer posted by user ID ${userId} for question ID ${questionId}: Answer ID ${rows.insertId}`
-    );
+    // console.log(
+    //   `Answer posted by user ID ${userId} for question ID ${questionId}: Answer ID ${rows.insertId}`
+    // );
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     // Return 500 Internal Server Error for any unexpected errors
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       error: "Internal Server Error",
@@ -125,14 +120,12 @@ export async function getAnswer(req, res) {
   const qid = parseInt(id);
 
   if (!qid || isNaN(qid)) {
-    return res
-      .status(StatusCodes.NOT_FOUND)
-      .json({
-        success: false,
-        status: "Error",
-        message: "Can't find answer for this questions",
-        error: "Invalid request parameter",
-      });
+    return res.status(StatusCodes.NOT_FOUND).json({
+      success: false,
+      status: "Error",
+      message: "Can't find answer for this questions",
+      error: "Invalid request parameter",
+    });
   }
 
   const selectAnswer = `
@@ -147,20 +140,8 @@ export async function getAnswer(req, res) {
 
   try {
     const [answers] = await pool.execute(selectAnswer, [qid]);
-    return res
-      .status(StatusCodes.OK)
-      .json({
-        success: true,
-        message: "Successfully retrieved answers",
-        Answer: answers,
-      });
+    return res.status(StatusCodes.OK);
   } catch (error) {
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({
-        success: false,
-        message: "Unable to retrieve answers",
-        error: `Internal server error ${error.message}`,
-      });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 }

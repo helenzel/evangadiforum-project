@@ -58,7 +58,7 @@ export async function register(req, res) {
       msg: "user created",
     });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       msg: "something went wrong, try again later!",
@@ -119,9 +119,9 @@ export async function login(req, res) {
     });
 
     //  console.log(`User logged in: ${user.username} (ID: ${user.user_id})`)
-    console.log(user);
+    // console.log(user);
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
 
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       sucess: false,
@@ -145,10 +145,10 @@ export async function checkUser(req, res) {
       "SELECT user_id, username, first_name, last_name, email FROM users WHERE user_id = ?",
       [userId]
     );
-    console.log(users[0]);
+    // console.log(users[0]);
 
     if (users.length === 0) {
-      console.warn(`User with ID ${userId} not found in DB`);
+      // console.warn(`User with ID ${userId} not found in DB`);
       return res.status(StatusCodes.NOT_FOUND).json({
         success: false,
         status: 404,
@@ -163,7 +163,7 @@ export async function checkUser(req, res) {
       user: users[0],
     });
   } catch (error) {
-    console.error("Get profile error:", error.message);
+    // console.error("Get profile error:", error.message);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       status: 500,
