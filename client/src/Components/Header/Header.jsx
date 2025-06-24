@@ -23,7 +23,7 @@ const Header = () => {
            localStorage.removeItem('user_id')
            navigate('/auth')        
           } catch (error) {
-            console.log(error)
+            // console.log(error)
           }
         }
         }

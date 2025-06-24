@@ -31,7 +31,7 @@ function Profile() {
         localStorage.removeItem('user_id')
         navigate('/auth')        
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
   }
   const initials = `${first_name?.[0] ?? ''}${last_name?.[0] ?? ''}`.toUpperCase();

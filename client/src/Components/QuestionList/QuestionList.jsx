@@ -12,7 +12,7 @@ const QuestionsList = () => {
       try {
         const res = await axiosInstance.get("/questions/"); 
         setQuestions(res.data.data);
-        console.log("res.data:", res.data);
+        // console.log("res.data:", res.data);
       } catch (err) {
         console.error("Error fetching questions:", err);
       } finally {

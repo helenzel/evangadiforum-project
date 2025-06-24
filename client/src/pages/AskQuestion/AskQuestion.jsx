@@ -57,7 +57,7 @@ function AskQuestion() {
       setDescription("");
       setTag("");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setPostError(err.response?.data?.message || "Failed to post question.");
 
       // Clear error message after 5 seconds

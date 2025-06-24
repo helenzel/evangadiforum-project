@@ -25,7 +25,7 @@ function Answer() {
                 })
                 setAnswer(answer_response.data.Answer)
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
         })()
        
@@ -58,7 +58,7 @@ function Answer() {
             answerRef.current.value = "";
             setErrorMsg("");
           } catch (error) {
-            console.log(error);
+            // console.log(error);
             setErrorMsg("Something went wrong. Please try again.");
           }
         }
@@ -73,7 +73,7 @@ function Answer() {
             )
             answerRef.current.value = ''
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
    }
 

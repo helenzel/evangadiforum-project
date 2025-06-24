@@ -90,7 +90,7 @@ function Login({ toggler }) {
           navigate("/");
         }, 5000);
       } else {
-        console.log("Login failed:", result.data);
+        // console.log("Login failed:", result.data);
 
         showStatus("Login failed. Please try again.");
       }
