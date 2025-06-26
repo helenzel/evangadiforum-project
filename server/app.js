@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
-app.get("/favicon.ico", (req, res) => res.status(204).end());
+
 
 //API Routes
 app.use("/api/auth", userRouter);
